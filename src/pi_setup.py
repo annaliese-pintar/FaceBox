@@ -1,7 +1,9 @@
 import facial_recognition
 import lock_control
+import LED
 
-if facial_recognition.my_function() is True:
+if facial_recognition.recognise_face() is True:
     lock_control.lock_function()
+    LED.green_LED()
 else:
-    print("locked")
+    LED.red_LED()

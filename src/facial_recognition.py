@@ -3,7 +3,7 @@ import face_recognition
 import time
 import os
 
-def my_function():
+def recognise_face():
 
     start_time = time.time()
 
