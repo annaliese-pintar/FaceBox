@@ -10,4 +10,4 @@ else:
     LED.red_LED()
 
 # shut down pi
-os.system("sudo shutdown -h now")
+# os.system("sudo shutdown -h now")
