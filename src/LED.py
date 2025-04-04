@@ -6,13 +6,15 @@ GPIO.setmode(GPIO.BCM)
 # prevents warning if still active from previous time the code was run
 GPIO.setwarnings(False)
 
-def green_LED():
+def green_LED_on():
     # sets GPIO 23 pin as an output pin 
     GPIO.setup(23, GPIO.OUT)
     # turn on green LED
     GPIO.output(23, 1)
-    # stays on for 3 seconds
-    sleep(3)
+    
+def green_LED_off():
+    # sets GPIO 23 pin as an output pin 
+    GPIO.setup(23, GPIO.OUT)
     # turn off green LED
     GPIO.output(23, 0)
     

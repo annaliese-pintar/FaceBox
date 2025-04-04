@@ -53,20 +53,20 @@ def recognise_face():
         while time.time() - start_time < 30:
             # capture frame
             frame = picam2.capture_array()
-            print("Frame captured")
+            #("Frame captured")
             
             # resize frame to 1/4 size for faster processing 
             small_frame = cv2.resize(frame, (0, 0), fx=0.25, fy=0.25)
-            print("Frame resized")
+            #print("Frame resized")
             
             # Convert BGR to RGB (face_recognition uses RGB)
             rgb_small_frame = cv2.cvtColor(small_frame, cv2.COLOR_BGR2RGB)
-            print("Frame converted to RGB")
+            #print("Frame converted to RGB")
             
             # find face locations
-            print("Finding face locations...")
+            #print("Finding face locations...")
             face_locations = face_recognition.face_locations(rgb_small_frame)
-            print(f"Found {len(face_locations)} faces")
+            #print(f"Found {len(face_locations)} faces")
             
             # Only encode if we found faces
             if face_locations:
