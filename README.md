@@ -33,5 +33,27 @@ FaceBox is a box that opens with facial recognition. The python application for 
 
 ## How It's Made
 ### Software 
+You will need to install:
+* OpenCV
+* Picamera2
+* face_recognition
+
+  ```
+  # test_installation.py
+import cv2
+import face_recognition
+from picamera2 import Picamera2
+
+# Just import to check
+print("OpenCV version:", cv2.__version__)
+print("Face recognition imported successfully")
+print("Picamera2 imported successfully")
+
+# Initialize camera to test
+picam2 = Picamera2()
+print("Camera initialized successfully")
+
+print("All libraries installed correctly!")
+```
 
 ### Hardware 
