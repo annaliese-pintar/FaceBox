@@ -37,6 +37,7 @@ You will need to install:
 * OpenCV
 * Picamera2
 * face_recognition
+
 Instruction for installation will vary by operating system so I recommend google how to install the above packeges for your OS.
 
 You can test everything is installed correctly with this code:
