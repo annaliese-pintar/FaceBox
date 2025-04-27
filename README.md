@@ -60,4 +60,4 @@ print("All libraries installed correctly!")
 ```
 
 ### Electrical  
-![Electrical diagram for the facial recotgnition box](/circuit_image.png)
+![Electrical diagram for the facial recotgnition box](/faceboxdiagram.png)
