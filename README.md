@@ -59,4 +59,4 @@ print("Camera initialized successfully")
 print("All libraries installed correctly!")
 ```
 
-### Hardware 
+### Electrical  
