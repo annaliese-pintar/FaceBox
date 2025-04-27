@@ -37,8 +37,7 @@ You will need to install:
 * OpenCV
 * Picamera2
 * face_recognition
-
-  ```
+```
   # test_installation.py
 import cv2
 import face_recognition
