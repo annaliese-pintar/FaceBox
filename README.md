@@ -8,7 +8,7 @@ FaceBox is a box that opens with facial recognition. The python application for 
 * Raspberry Pi 4 - https://a.co/d/dmxZY0r
     - Raspberry Pi power switch (if you don't buy the kit) - https://a.co/d/eeoZahd
 * Camera module with case - https://a.co/d/2vhtAwm
-* 12V Electronic solenoid door lock - https://a.co/d/dyk63Oi\
+* 12V Electronic solenoid door lock - https://a.co/d/dyk63Oi
 * 5V Relay - https://a.co/d/dMmcy7T
 * 2 Rechargeable Lithium ion battery packs - https://a.co/d/iqWXyzS
 * Power adapter - https://a.co/d/6XaGGVK
