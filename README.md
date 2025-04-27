@@ -5,18 +5,18 @@ FaceBox is a box that opens with facial recognition. The python application for 
 
 ## What You Will Need To Build FaceBox
 ### Materials 
-* Raspberry Pi 4 - https://a.co/d/dmxZY0r
-    - Raspberry Pi power switch (if you don't buy the kit) - https://a.co/d/eeoZahd
-* Camera module with case - https://a.co/d/2vhtAwm
-* 12V Electronic solenoid door lock - https://a.co/d/dyk63Oi
-* 5V Relay - https://a.co/d/dMmcy7T
-* 2 Rechargeable Lithium ion battery packs - https://a.co/d/iqWXyzS
-* Power adapter - https://a.co/d/6XaGGVK
-* Jumper ribbon cables - https://a.co/d/10DB8zA
+* [Raspberry Pi 4](https://a.co/d/dmxZY0r)
+    - [Raspberry Pi power switch](https://a.co/d/eeoZahd) (if you don't buy the kit)  
+* [Camera module with case](https://a.co/d/2vhtAw)
+* [12V Electronic solenoid door lock](https://a.co/d/dyk63Oi)
+* [5V Relay](https://a.co/d/dMmcy7T)
+* 2 [Rechargeable Lithium ion battery packs](https://a.co/d/iqWXyzS)
+* [Power adapter](https://a.co/d/6XaGGVK)
+* [Jumper ribbon cables](https://a.co/d/10DB8zA)
 * Green LED
 * Red LED
 * 2 Resistors (calculate appropriate resistor using Ohm's Law)
-* Box - https://a.co/d/5UvDAct
+* [Box](https://a.co/d/5UvDAct)
 * Screws to secure the solenoid to the box of your choice
 * Hot Glue
 * Wood Glue
