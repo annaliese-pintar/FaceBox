@@ -93,7 +93,10 @@ def lock_function():
 ```
 
 > [!CAUTION]
-> [Setting the GPIO pins to the incorrect output for your relay's trigger mode can cause overheating and damage to the solenoid depending on the solenoid used](#trigger-mode-mistake)
+> Setting the GPIO pins to the incorrect output for your relay's trigger mode can cause overheating and damage to the solenoid depending on the solenoid used. [Learn from my mistakes.](#trigger-mode-mistake)
+
+> [!CAUTION]
+> Be aware of the limit to the amount of time your solenoid can be powered. If the solenoid recieves power longer than its limits, it can overheat and damage the solenoid. [Learn from my mistakes](#sleep-time-mistake)
 
 ### Electrical  
 ![Electrical diagram for the facial recognition box](/faceboxdiagram.png)
@@ -101,3 +104,6 @@ def lock_function():
 ## Mistakes I Learned From
 <a name="trigger-mode-mistake"></a>
 (Details on trigger mode mistake coming soon)
+
+<a name="sleep-time-mistake"></a>
+(Details on sleep0 time mistake)
