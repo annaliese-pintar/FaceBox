@@ -41,7 +41,7 @@ You will need to install:
 * Picamera2
 * face_recognition
 
-Instruction for installation will vary by operating system so I recommend google how to install the above packeges for your OS.
+Instruction for installation will vary by operating system so I recommend googleing how to install the above packeges for your OS.
 
 You can test everything is installed correctly with this code:
 ```
@@ -62,5 +62,42 @@ print("Camera initialized successfully")
 print("All libraries installed correctly!")
 ```
 
+It is important to know the trigger mode of your relay. The mode can be either active-high/high-level trigger or active-low/low-level trigger. If it is active-high, it will activate when the control pin receives a high signal (5V), while if it is active-low, it will activate when the control pin is set to LOW (0V). The relay I used is active-low. If you are using an active-high relay, you will have to make some changes to the lock_control.py file:
+
+```
+import RPi.GPIO as GPIO
+from time import sleep
+
+def lock_function():
+    print("IN LOCK FUNCTION")
+    # prevents warning if still active from previous time the code was run
+    GPIO.setwarnings(False)
+
+    # will refer to the GPIO pins by the number directly after the word GPIO
+    GPIO.setmode(GPIO.BCM)
+
+    # sets GPIO 18 pin as an output pin 
+    GPIO.setup(18, GPIO.OUT)
+    
+    
+    GPIO.output(18, 1)  
+    
+    sleep(0.1)     
+    
+    GPIO.output(18, 0)
+    
+    sleep(0.1)
+    
+    GPIO.cleanup(18)
+
+```
+
+> [!CAUTION]
+> [Setting the GPIO pins to the incorrect output for your relay's trigger mode can cause overheating and damage to the solenoid depending on the solenoid used](#trigger-mode-mistake)
+
 ### Electrical  
-![Electrical diagram for the facial recotgnition box](/faceboxdiagram.png)
+![Electrical diagram for the facial recognition box](/faceboxdiagram.png)
+
+## Mistakes I Learned From
+<a name="trigger-mode-mistake"></a>
+(Details on trigger mode mistake coming soon)
