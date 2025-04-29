@@ -280,6 +280,21 @@ I got a little over excited when I finally got all the pieces I needed to assemb
 7. Hot glue the charging ports into place
 8. Hot glue the camera module into place
 
+## Practical Applications
+This build offers versatile applications in various contexts. It could secure keepsakes or create a special surprise for someone special. With minor modifications, it could function as a facial recognition-secured diary. I also see potential for its implementation in escape rooms as an engaging puzzle element. The possibilities for adapting and expanding this build are numerous and worth exploring.
+
+## Possible Improvements 
+### Quicker Bootup Time
+With the current hardware configuration, the system experiences notably slow bootup times. I'm interested in exploring an alternative to the Raspberry Pi 4 Model B for this project. Specifically, implementing an ESP32-CAM microcontroller would significantly reduce the startup time, making the device more responsive and practical for everyday use.
+
+### Inactive In Poweroff state 
+Currently, I power the box by turning on the Raspberry Pi with its power switch, then pressing the button again to completely cut power when finished. If the system could remain in a powered-off state rather than having all power disconnected, it would boot up much faster and eliminate the need to manually press the power switch to turn it off. However, the Raspberry Pi 4B consumes significant power even when shut down. An ESP32-CAM board would be an ideal solution to this problem, offering much lower power consumption in its inactive state.
+
+### Securing Hardware Inside the FaceBox 
+For this project, I didn't permanently attach the hardware components to the box since I plan to reuse them in future projects. To make the build more complete and professional, I would secure all components to the bottom of the box and conceal them from view.
+
+### 3D Printed Box 
+Customizing a pre-made wooden box was challenging due to my limited tools and woodworking skills, resulting in a less professional finish than desired. For a more tailored solution that properly accommodates and conceals all components, I would design and create a 3D printed enclosure instead.
 
 ## Mistakes To Learn From
 ### Trigger Mode Mistake
