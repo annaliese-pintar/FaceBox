@@ -275,6 +275,7 @@ I got a little over excited when I finally got all the pieces I needed to assemb
     3. Fit the ends of the power button wire through the hole so that the entire power button is on the outside of the box
 
 <img src="powerswitchfront.png" alt="powerswitch placement" width="350"/> <img src="powerswitchback.png" alt="powerswitch placement" width="350"/>
+
 6. Hot glue the LEDs into place
 7. Hot glue the charging ports into place
 8. Hot glue the camera module into place
