@@ -36,31 +36,6 @@ FaceBox is a box that opens with facial recognition. The python application for 
 
 ## How It's Made
 ### Software 
-You will need to install:
-* OpenCV
-* Picamera2
-* face_recognition
-
-Instruction for installation will vary by operating system so I recommend googleing how to install the above packeges for your OS.
-
-You can test everything is installed correctly with this code:
-```
-# test_installation.py
-import cv2
-import face_recognition
-from picamera2 import Picamera2
-
-# Just import to check
-print("OpenCV version:", cv2.__version__)
-print("Face recognition imported successfully")
-print("Picamera2 imported successfully")
-
-# Initialize camera to test
-picam2 = Picamera2()
-print("Camera initialized successfully")
-
-print("All libraries installed correctly!")
-```
 
 It is important to know the trigger mode of your relay. The mode can be either active-high/high-level trigger or active-low/low-level trigger. If it is active-high, it will activate when the control pin receives a high signal (5V), while if it is active-low, it will activate when the control pin is set to LOW (0V). The relay I used is active-low. If you are using an active-high relay, you will have to make some changes to the lock_control.py file:
 
@@ -99,6 +74,24 @@ def lock_function():
 > Be aware of the limit to the amount of time your solenoid can be powered. If the solenoid recieves power longer than its limits, it can overheat and damage the solenoid. [Learn from my mistakes](#sleep-time-mistake)
 
 ### Create Development Mode and Production Mode Flags
+Since the pi automatically shuts off at the end of the application, we will need some way to prevent the pi from shutting off in the event you want to make changes to the application. We are going to use a file flag to put the application into development mode. During the shut down process there is a 10 second countdown and during the countdown the application checks if the dev_mode file exists. If it does exist, the safe_shutdown function in the safe_control.py file will return false and the pi will not shut down. We will create a development mode and production mode file that will contain scripts to remotely (from your computer) add and remove a dev_mode file from the src directory on your pi. You will need to enable SSH on your pi before we make the script files.
+
+#### Enable SSH On Your Pi
+1. Open a terminal
+2. Enable SSH permanently:
+```
+sudo systemctl enable ssh
+sudo systemctl start ssh
+```
+3. Verify SSH is running:
+```
+sudo systemctl status ssh
+```
+4. Test SSH connection from you PC (replace pi with your pi's name and replace your-pi-ip with your pi's IP address):
+```
+ssh pi@your-pi-ip
+```
+
 #### Windows
 ##### Development Mode Flag
 1. Open PowerShell on your Windows computer
@@ -114,56 +107,17 @@ Write-Host "Development mode enabled on Raspberry Pi" -ForegroundColor Green
 '@
 ```
 4. Verify the file was created:
+```
 Get-Content .\pi-dev-mode.ps1
+```
 
 Now the script is ready to use. If you want to turn on development mode (prevent the pi from shutting off automatically), while the pi is on, open a PowerShell on your PC and type:
 ```
 .\pi-dev-mode.ps1
 ```
 It should then prompt you to enter the password for your Raspberry Pi.
-##### Development Mode Flag
-1. Open PowerShell on your Windows computer
-2. Navigate to where you want to create the file (recommend home directory):
-```
-cd ~
-```
-3. Use the Set-Content cmdlet to create the file with contents (Replace 192.168.1.100 with your Pi's actual IP address and pi with your pi's name):
-```
-Set-Content -Path .\pi-dev-mode.ps1 -Value @'
-ssh pi@192.168.1.100 "touch /home/pi/FaceBox/src/dev_mode"
-Write-Host "Development mode enabled on Raspberry Pi" -ForegroundColor Green
-'@
-```
-4. Verify the file was created:
-Get-Content .\pi-dev-mode.ps1
-
-Now the script is ready to use. If you want to turn on development mode (prevent the pi from shutting off automatically), while the pi is on, open a PowerShell on your PC and type:
-```
-.\pi-dev-mode.ps1
-```
 
 ##### Production Mode (Remove Flag)
-1. Open PowerShell on your Windows computer
-2. Navigate to where you want to create the file (recommend home directory):
-```
-cd ~
-```
-3. Use the Set-Content cmdlet to create the file with contents (Replace 192.168.1.100 with your Pi's actual IP address and pi with your pi's name):
-```
-Set-Content -Path .\pi-dev-mode.ps1 -Value @'
-ssh pi@192.168.1.100 "touch /home/pi/FaceBox/src/dev_mode"
-Write-Host "Development mode enabled on Raspberry Pi" -ForegroundColor Green
-'@
-```
-4. Verify the file was created:
-Get-Content .\pi-dev-mode.ps1
-
-Now the script is ready to use. If you want to turn on development mode (prevent the pi from shutting off automatically), while the pi is on, open a PowerShell on your PC and type:
-```
-.\pi-dev-mode.ps1
-```
-It should then prompt you to enter the password for your Raspberry Pi.
-##### Development Mode Flag
 1. Open PowerShell on your Windows computer
 2. Navigate to where you want to create the file (recommend home directory):
 ```
@@ -177,7 +131,9 @@ Write-Host "Production mode enabled on Raspberry Pi" -ForegroundColor Green
 '@
 ```
 4. Verify the file was created:
+```
 Get-Content .\pi-prod-mode.ps1
+```
 
 Now the script is ready to use. If you want to turn on production mode (allow the pi to shut off automatically), while the pi is on, open a PowerShell on your PC and type:
 ```
@@ -185,6 +141,7 @@ Now the script is ready to use. If you want to turn on production mode (allow th
 ```
 
 It should then prompt you to enter the password for your Raspberry Pi.
+
 #### Mac
 ##### Development Mode Flag
 1. Open Terminal on your MacBook
