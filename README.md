@@ -31,8 +31,10 @@ FaceBox is a box that opens with facial recognition. The python application for 
 * Wood chisels
 * Rubber mallet
 * Hand saw
-* Portable quick clamp
+* Portable table clamp
 * Bar clamp
+* Philips head screw driver
+* Pencil
 
 ## How It's Made
 ### Software 
@@ -238,6 +240,34 @@ sudo systemctl status facebox.service
 
 ### Electrical  
 ![Electrical diagram for the facial recognition box](/faceboxdiagram.png)
+
+### Assembling The Box
+I got a little over excited when I finally got all the pieces I needed to assemble the box and forgot to take pictures along the way so I will just describe how I went about it. 
+ 
+1. Set up the solenoid:
+    1. Line up the solenoid with the center of the front edge of the box and screw it in place with a philips head screws and screw driver 
+    2. Place the metal loop that the solenoid latches onto into the solenoid
+    3. Measure the distance from the top of the solenoid to the top of the loop's screw plate
+    4. Subtract that length from the depth of the top of the lid to get the height of the wooden piece you will add to allow the loop to sit low enough for the solenoid to latch
+    5. Glue wooden paint stir sticks together until they match the length calculated above and clamp them together with the bar clamp until they dry
+    6. Clamp the dried paint stir stick stack with the portable table clamp and cut a 4 inch long block with the hand saw
+    7. Center it along the top edge of the lid of the box, glue it in place and clamp until it dries.
+    8. With the metal loop still in the solenoid, close the box until the loops screw plate touches the stir stick block and mark the block where the edges of they plate are.
+    9. Unlatch the loop with the solenoid with the emergency unlatchin mechanism (reference solenoid documentation), line it up with the markings on the block and scew it in place with either a drill or screw driver
+2. Decide where you want to put the LEDs, mark the placement, and drill holes slightly bigger than the LEDs.
+3. Making a hole for the camera module:
+    1. Decide where you want to put the camera module and mark the placement by tracing around the case
+    2. Drill as many holes as you can inside the marked rectangle
+    3. Take the wood chisel and mallet and chisle away the rest of the rectangle
+4. Decide where you want to put the battery pack charging ports, mark the placement, and drill holes slightly bigger than the ports
+5. Installing the power button:
+    1. Decide where you want to put the power button and mark to circles on either side slightly bigger than the c cable ends
+    2. Drill the two holes slightly bigger than the c cable ends
+    3. Fit the ends of the power button wire through the hole so that the entire power button is on the outside of the box
+6. Hot glue the LEDs into place
+7. Hot glue the charging ports into place
+8. Hot glue the camera module into place
+
 
 ## Mistakes To Learn From
 ### Trigger Mode Mistake
