@@ -73,10 +73,10 @@ def lock_function():
 > [!CAUTION]
 > Be aware of the limit to the amount of time your solenoid can be powered. If the solenoid recieves power longer than its limits, it can overheat and damage the solenoid. [Learn from my mistakes](#sleep-time-mistake)
 
-### Create Development Mode and Production Mode Flags
+#### Create Development Mode and Production Mode Flags
 Since the pi automatically shuts off at the end of the application, we will need some way to prevent the pi from shutting off in the event you want to make changes to the application. We are going to use a file flag to put the application into development mode. During the shut down process there is a 10 second countdown and during the countdown the application checks if the dev_mode file exists. If it does exist, the safe_shutdown function in the safe_control.py file will return false and the pi will not shut down. We will create a development mode and production mode file that will contain scripts to remotely (from your computer) add and remove a dev_mode file from the src directory on your pi. You will need to enable SSH on your pi before we make the script files.
 
-#### Enable SSH On Your Pi
+##### Enable SSH On Your Pi
 1. Open a terminal
 2. Enable SSH permanently:
 ```
@@ -92,8 +92,8 @@ sudo systemctl status ssh
 ssh pi@your-pi-ip
 ```
 
-#### Windows
-##### Development Mode Flag
+##### Windows
+###### Development Mode Flag
 1. Open PowerShell on your Windows computer
 2. Navigate to where you want to create the file (recommend home directory):
 ```
@@ -117,7 +117,7 @@ Now the script is ready to use. If you want to turn on development mode (prevent
 ```
 It should then prompt you to enter the password for your Raspberry Pi.
 
-##### Production Mode (Remove Flag)
+###### Production Mode (Remove Flag)
 1. Open PowerShell on your Windows computer
 2. Navigate to where you want to create the file (recommend home directory):
 ```
@@ -142,8 +142,8 @@ Now the script is ready to use. If you want to turn on production mode (allow th
 
 It should then prompt you to enter the password for your Raspberry Pi.
 
-#### Mac
-##### Development Mode Flag
+##### Mac
+###### Development Mode Flag
 1. Open Terminal on your MacBook
 2. Navigate to where you want to create the file (recommend home directory):
 ```
@@ -171,7 +171,7 @@ Now the script is ready to use. If you want to turn on development mode (prevent
 ```
 It should then prompt you to enter the password for your Raspberry Pi.
 
-##### Production Mode (Remove Flag)
+###### Production Mode (Remove Flag)
 1. Open Terminal on your MacBook
 2. Navigate to where you want to create the file (recommend home directory):
 ```
@@ -199,7 +199,7 @@ Now the script is ready to use. If you want to turn on development mode (prevent
 ```
 It should then prompt you to enter the password for your Raspberry Pi.
 
-### Create the service file on Raspberry Pi 4B
+#### Create the service file on Raspberry Pi 4B
 The facebox.service file will allow for you to create a service that automatically starts the application when the Raspberry Pi boots up.
 
 1. In terminal on the Raspberry Pi type:
