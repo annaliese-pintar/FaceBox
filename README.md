@@ -296,6 +296,9 @@ For this project, I didn't permanently attach the hardware components to the box
 ### 3D Printed Box 
 Customizing a pre-made wooden box was challenging due to my limited tools and woodworking skills, resulting in a less professional finish than desired. For a more tailored solution that properly accommodates and conceals all components, I would design and create a 3D printed enclosure instead.
 
+### Desktop Application
+For this project, I'd like to develop a complementary desktop application that enables users to log in, register their box, and update the facial recognition settings. This would allow for more flexible and user-friendly management of the security features.
+
 ## Mistakes To Learn From
 ### Trigger Mode Mistake
 <a name="trigger-mode-mistake"></a>
