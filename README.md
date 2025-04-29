@@ -35,6 +35,9 @@ FaceBox is a facial recognition-enabled box that unlocks when it recognizes your
 * Bar clamp
 * Philips head screw driver
 * Pencil
+* Monitor
+* Mouse
+* Keyboard
 
 ## How It's Made
 ### Software 
