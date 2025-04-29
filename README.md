@@ -43,6 +43,7 @@ FaceBox is a facial recognition-enabled box that unlocks when it recognizes your
 ### Software 
 #### Fork A Repository 
 To make your own FaceBox, you can fork the repository and clone the forked repository.
+
 [Instructions to forking a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
 
 #### Code Adjustments Depending On Relay Trigger Mode
