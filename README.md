@@ -254,16 +254,20 @@ I got a little over excited when I finally got all the pieces I needed to assemb
     7. Center it along the top edge of the lid of the box, glue it in place and clamp until it dries.
     8. With the metal loop still in the solenoid, close the box until the loops screw plate touches the stir stick block and mark the block where the edges of they plate are.
     9. Unlatch the loop with the solenoid with the emergency unlatchin mechanism (reference solenoid documentation), line it up with the markings on the block and scew it in place with either a drill or screw driver
+![Solenoid in box](/solenoid.png) ![Loop on lid](/loop.png)
 2. Decide where you want to put the LEDs, mark the placement, and drill holes slightly bigger than the LEDs.
+![LED placement](/LED.png)
 3. Making a hole for the camera module:
     1. Decide where you want to put the camera module and mark the placement by tracing around the case
     2. Drill as many holes as you can inside the marked rectangle
     3. Take the wood chisel and mallet and chisle away the rest of the rectangle
+![Camera placement](/camera.png)
 4. Decide where you want to put the battery pack charging ports, mark the placement, and drill holes slightly bigger than the ports
 5. Installing the power button:
     1. Decide where you want to put the power button and mark to circles on either side slightly bigger than the c cable ends
     2. Drill the two holes slightly bigger than the c cable ends
     3. Fit the ends of the power button wire through the hole so that the entire power button is on the outside of the box
+![Powerswitch placement front](/powerswitchfront.png) ![Powerswitch placement back](/powerswitchback.png)
 6. Hot glue the LEDs into place
 7. Hot glue the charging ports into place
 8. Hot glue the camera module into place
