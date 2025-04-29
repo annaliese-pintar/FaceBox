@@ -38,6 +38,9 @@ FaceBox is a facial recognition-enabled box that unlocks when it recognizes your
 
 ## How It's Made
 ### Software 
+#### Fork A Repository 
+[Instructions to forking a repository](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks/fork-a-repo)
+
 #### Code Adjustments Depending On Relay Trigger Mode
 Understanding your relay's trigger mode is crucial for proper operation. Your relay can be either active-high (high-level trigger) or active-low (low-level trigger). With active-high relays, the control pin requires a high signal (5V) to activate, while active-low relays activate when the control pin receives a LOW signal (0V). The relay I've implemented in this project is active-low. If you're working with an active-high relay instead, you'll need to modify the lock_control.py file accordingly:
 
