@@ -36,7 +36,7 @@ FaceBox is a box that opens with facial recognition. The python application for 
 
 ## How It's Made
 ### Software 
-
+#### Code Adjustments Depending On Relay Trigger Mode
 It is important to know the trigger mode of your relay. The mode can be either active-high/high-level trigger or active-low/low-level trigger. If it is active-high, it will activate when the control pin receives a high signal (5V), while if it is active-low, it will activate when the control pin is set to LOW (0V). The relay I used is active-low. If you are using an active-high relay, you will have to make some changes to the lock_control.py file:
 
 ```
@@ -239,9 +239,9 @@ sudo systemctl status facebox.service
 ### Electrical  
 ![Electrical diagram for the facial recognition box](/faceboxdiagram.png)
 
-## Mistakes I Learned From
+## Mistakes To Learn From
 <a name="trigger-mode-mistake"></a>
-(Details on trigger mode mistake coming soon)
+While implementing the solenoid, I was not aware that the trigger mode of my relay was active-low. My GPIO pin output was set to HIGH to trigger the relay and then set back to LOW to turn off the relay. However, since my relay's trigger  mode was active-low, I was leaving my relay in an active state rather than returning it to inactive. This caused my solenoid to burn out due to the solenoids 0.2 second limit on how long it should recieve power.
 
 <a name="sleep-time-mistake"></a>
-(Details on sleep0 time mistake)
+Prior to implementing solenoid controls, I did not fully read the documentation for the solenoid I was using. The documenation states that the solenoid should be powered for only 0.2 seconds max. In between my GPIO pin controls for setting the ouput from LOW back to HIGH I have a sleep function. Initally, I set the sleep function to sleep for 1 second leaving the GPIO pin output on LOW for 1 second which means that solenoid was powered longer than it's max causing the solenoid to burn out.
