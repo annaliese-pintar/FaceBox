@@ -1,7 +1,7 @@
 # FaceBox
 
 ## How It Works
-FaceBox is a box that opens with facial recognition. The python application for this project runs on a Raspberry Pi 4, which controls the solenoid that holds the box shut, the camera module for live video feed, and the two LED lights that indicate the state of the application. The application automatically starts when the Raspberry Pi turns on. When the application starts, the green LED turns on. The camera module provides live feed for the application to visualize a face and compare it to the image provided. If the face matches the face in the image, the solenoid will release the latch and the box will be opened. If the face does not match the provided image, the red LED will blink three times. At the end of the application, the green LED will turn off and the Raspberry Pi auomatically shuts off.
+FaceBox is a facial recognition-enabled box that unlocks when it recognizes your face. The project runs on a Raspberry Pi 4, which manages three key components: the locking solenoid, the camera module providing live video feed, and two LED indicators that show the system's status. The application launches automatically when the Raspberry Pi powers on, signaled by the green LED illuminating. Using the camera's live feed, the system compares any detected face with the pre-stored reference image. Upon a successful match, the solenoid releases the latch, allowing the box to open. If no match is found, the red LED blinks three times to indicate failure. When the process completes, the green LED turns off and the Raspberry Pi automatically shuts down.
 
 ### Video showing how the box works:
 [![Video explaining the box](https://img.youtube.com/vi/-yx-T_3bWLI/0.jpg)](https://youtu.be/-yx-T_3bWLI)
@@ -39,7 +39,7 @@ FaceBox is a box that opens with facial recognition. The python application for 
 ## How It's Made
 ### Software 
 #### Code Adjustments Depending On Relay Trigger Mode
-It is important to know the trigger mode of your relay. The mode can be either active-high/high-level trigger or active-low/low-level trigger. If it is active-high, it will activate when the control pin receives a high signal (5V), while if it is active-low, it will activate when the control pin is set to LOW (0V). The relay I used is active-low. If you are using an active-high relay, you will have to make some changes to the lock_control.py file:
+Understanding your relay's trigger mode is crucial for proper operation. Your relay can be either active-high (high-level trigger) or active-low (low-level trigger). With active-high relays, the control pin requires a high signal (5V) to activate, while active-low relays activate when the control pin receives a LOW signal (0V). The relay I've implemented in this project is active-low. If you're working with an active-high relay instead, you'll need to modify the lock_control.py file accordingly:
 
 ```
 import RPi.GPIO as GPIO
@@ -76,7 +76,7 @@ def lock_function():
 > Be aware of the limit to the amount of time your solenoid can be powered. If the solenoid recieves power longer than its limits, it can overheat and damage the solenoid. [Learn from my mistakes](#sleep-time-mistake)
 
 #### Create Development Mode and Production Mode Flags
-Since the pi automatically shuts off at the end of the application, we will need some way to prevent the pi from shutting off in the event you want to make changes to the application. We are going to use a file flag to put the application into development mode. During the shut down process there is a 10 second countdown and during the countdown the application checks if the dev_mode file exists. If it does exist, the safe_shutdown function in the safe_control.py file will return false and the pi will not shut down. We will create a development mode and production mode file that will contain scripts to remotely (from your computer) add and remove a dev_mode file from the src directory on your pi. You will need to enable SSH on your pi before we make the script files.
+Since the Raspberry Pi automatically shuts down when the application ends, you'll need a way to prevent shutdown during development work. We'll implement this using a file flag for development mode. During the shutdown sequence, there's a 10-second countdown where the application checks for the existence of a dev_mode file. If this file exists, the safe_shutdown function in safe_control.py will return false, preventing the Pi from powering off. We'll create both development and production mode script files that will let you remotely add or remove the dev_mode file in the Pi's src directory from your computer. Before setting up these scripts, you'll need to enable SSH on your Raspberry Pi.
 
 ##### Enable SSH On Your Pi
 1. Open a terminal
@@ -284,8 +284,8 @@ I got a little over excited when I finally got all the pieces I needed to assemb
 ## Mistakes To Learn From
 ### Trigger Mode Mistake
 <a name="trigger-mode-mistake"></a>
-While implementing the solenoid, I was not aware that the trigger mode of my relay was active-low. My GPIO pin output was set to HIGH to trigger the relay and then set back to LOW to turn off the relay. However, since my relay's trigger  mode was active-low, I was leaving my relay in an active state rather than returning it to inactive. This caused my solenoid to burn out due to the solenoids 0.2 second limit on how long it should recieve power.
+While implementing the solenoid, I wasn't aware that my relay had an active-low trigger mode. I had configured my GPIO pin to output HIGH to activate the relay and then return to LOW to deactivate it. However, since my relay was actually active-low, this configuration had the opposite effect—keeping the relay activated when I thought it was inactive. This critical misunderstanding caused my solenoid to burn out because it received power beyond its 0.2-second operating limit.
 
 ### Sleep Time Mistake
 <a name="sleep-time-mistake"></a>
-Prior to implementing solenoid controls, I did not fully read the documentation for the solenoid I was using. The documenation states that the solenoid should be powered for only 0.2 seconds max. In between my GPIO pin controls for setting the ouput from LOW back to HIGH I have a sleep function. Initally, I set the sleep function to sleep for 1 second leaving the GPIO pin output on LOW for 1 second which means that solenoid was powered longer than it's max causing the solenoid to burn out.
+Prior to implementing solenoid controls, I didn't fully read the documentation for my solenoid. The documentation clearly states that the solenoid should be powered for a maximum of only 0.2 seconds. Between my GPIO pin control operations that switched the output from LOW back to HIGH, I included a sleep function. Initially, I set this sleep function to pause for 1 second, which kept the GPIO pin output on LOW for a full second. Since this exceeded the solenoid's maximum power duration, it caused the solenoid to burn out.
