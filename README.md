@@ -254,7 +254,7 @@ I got a little over excited when I finally got all the pieces I needed to assemb
     7. Center it along the top edge of the lid of the box, glue it in place and clamp until it dries.
     8. With the metal loop still in the solenoid, close the box until the loops screw plate touches the stir stick block and mark the block where the edges of they plate are.
     9. Unlatch the loop with the solenoid with the emergency unlatchin mechanism (reference solenoid documentation), line it up with the markings on the block and scew it in place with either a drill or screw driver
-![Solenoid in box](/solenoid.png) ![Loop on lid](/loop.png)
+<img src="solenoid.png" alt="solenoid placement" width="200" /> ![Loop on lid](/loop.png)
 2. Decide where you want to put the LEDs, mark the placement, and drill holes slightly bigger than the LEDs.
 ![LED placement](/LED.png)
 3. Making a hole for the camera module:
