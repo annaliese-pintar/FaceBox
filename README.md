@@ -98,6 +98,187 @@ def lock_function():
 > [!CAUTION]
 > Be aware of the limit to the amount of time your solenoid can be powered. If the solenoid recieves power longer than its limits, it can overheat and damage the solenoid. [Learn from my mistakes](#sleep-time-mistake)
 
+### Create Development Mode and Production Mode Flags
+#### Windows
+##### Development Mode Flag
+1. Open PowerShell on your Windows computer
+2. Navigate to where you want to create the file (recommend home directory):
+```
+cd ~
+```
+3. Use the Set-Content cmdlet to create the file with contents (Replace 192.168.1.100 with your Pi's actual IP address and pi with your pi's name):
+```
+Set-Content -Path .\pi-dev-mode.ps1 -Value @'
+ssh pi@192.168.1.100 "touch /home/pi/FaceBox/src/dev_mode"
+Write-Host "Development mode enabled on Raspberry Pi" -ForegroundColor Green
+'@
+```
+4. Verify the file was created:
+Get-Content .\pi-dev-mode.ps1
+
+Now the script is ready to use. If you want to turn on development mode (prevent the pi from shutting off automatically), while the pi is on, open a PowerShell on your PC and type:
+```
+.\pi-dev-mode.ps1
+```
+It should then prompt you to enter the password for your Raspberry Pi.
+##### Development Mode Flag
+1. Open PowerShell on your Windows computer
+2. Navigate to where you want to create the file (recommend home directory):
+```
+cd ~
+```
+3. Use the Set-Content cmdlet to create the file with contents (Replace 192.168.1.100 with your Pi's actual IP address and pi with your pi's name):
+```
+Set-Content -Path .\pi-dev-mode.ps1 -Value @'
+ssh pi@192.168.1.100 "touch /home/pi/FaceBox/src/dev_mode"
+Write-Host "Development mode enabled on Raspberry Pi" -ForegroundColor Green
+'@
+```
+4. Verify the file was created:
+Get-Content .\pi-dev-mode.ps1
+
+Now the script is ready to use. If you want to turn on development mode (prevent the pi from shutting off automatically), while the pi is on, open a PowerShell on your PC and type:
+```
+.\pi-dev-mode.ps1
+```
+
+##### Production Mode (Remove Flag)
+1. Open PowerShell on your Windows computer
+2. Navigate to where you want to create the file (recommend home directory):
+```
+cd ~
+```
+3. Use the Set-Content cmdlet to create the file with contents (Replace 192.168.1.100 with your Pi's actual IP address and pi with your pi's name):
+```
+Set-Content -Path .\pi-dev-mode.ps1 -Value @'
+ssh pi@192.168.1.100 "touch /home/pi/FaceBox/src/dev_mode"
+Write-Host "Development mode enabled on Raspberry Pi" -ForegroundColor Green
+'@
+```
+4. Verify the file was created:
+Get-Content .\pi-dev-mode.ps1
+
+Now the script is ready to use. If you want to turn on development mode (prevent the pi from shutting off automatically), while the pi is on, open a PowerShell on your PC and type:
+```
+.\pi-dev-mode.ps1
+```
+It should then prompt you to enter the password for your Raspberry Pi.
+##### Development Mode Flag
+1. Open PowerShell on your Windows computer
+2. Navigate to where you want to create the file (recommend home directory):
+```
+cd ~
+```
+3. Use the Set-Content cmdlet to create the file with contents (Replace 192.168.1.100 with your Pi's actual IP address and pi with your pi's name):
+```
+Set-Content -Path .\pi-prod-mode.ps1 -Value @'
+ssh pi@192.168.1.100 "rm /home/pi/FaceBox/src/dev_mode"
+Write-Host "Production mode enabled on Raspberry Pi" -ForegroundColor Green
+'@
+```
+4. Verify the file was created:
+Get-Content .\pi-prod-mode.ps1
+
+Now the script is ready to use. If you want to turn on production mode (allow the pi to shut off automatically), while the pi is on, open a PowerShell on your PC and type:
+```
+.\pi-prod-mode.ps1
+```
+
+It should then prompt you to enter the password for your Raspberry Pi.
+#### Mac
+##### Development Mode Flag
+1. Open Terminal on your MacBook
+2. Navigate to where you want to create the file (recommend home directory):
+```
+cd ~
+```
+3. Create the file using a text editor like nano:
+```
+nano pi-dev-mode.sh
+```
+4. In the nano editor, type the script (replace YOUR_PI_IP with your actual Pi's IP address and pi with your pi's name):
+```
+#!/bin/bash
+ssh pi@YOUR_PI_IP "touch /home/pi/FaceBox/src/dev_mode"
+echo "Development mode enabled on Raspberry Pi"
+```
+5. Save the file by pressing Ctrl+X, then Y, then Enter
+6. Make the file executable:
+```
+chmod +x pi-dev-mode.sh
+```
+
+Now the script is ready to use. If you want to turn on development mode (prevent the pi from shutting off automatically), while the pi is on, open a terminal on your Mac and type:
+```
+./pi-dev-mode.sh
+```
+It should then prompt you to enter the password for your Raspberry Pi.
+
+##### Production Mode (Remove Flag)
+1. Open Terminal on your MacBook
+2. Navigate to where you want to create the file (recommend home directory):
+```
+cd ~
+```
+3. Create the file using a text editor like nano:
+```
+nano pi-prod-mode.sh
+```
+4. In the nano editor, type the script (replace YOUR_PI_IP with your actual Pi's IP address and pi with your pi's name):
+```
+#!/bin/bash
+ssh pi@YOUR_PI_IP "rm /home/pi/FaceBox/src/dev_mode"
+echo "Production mode enabled on Raspberry Pi"
+```
+5. Save the file by pressing Ctrl+X, then Y, then Enter
+6. Make the file executable:
+```
+chmod +x pi-prod-mode.sh
+```
+
+Now the script is ready to use. If you want to turn on development mode (prevent the pi from shutting off automatically), while the pi is on, open a terminal on your Mac and type:
+```
+./pi-prod-mode.sh
+```
+It should then prompt you to enter the password for your Raspberry Pi.
+
+### Create the service file on Raspberry Pi 4B
+The facebox.service file will allow for you to create a service that automatically starts the application when the Raspberry Pi boots up.
+
+1. In terminal on the Raspberry Pi type:
+```
+sudo nano /etc/system/facebox.service
+```
+2. In the nano editor, type the script (replace all instances of pi with pi's name):
+```
+[Unit]
+Description=Face Recognition Box
+After=network.target
+
+[Service]
+ExecStart=/home/pi/FaceBox/src/path/to/venv/bin/python /home/pi/FaceBox/src/pi_setup.py
+WorkingDirectory=/home/pi/FaceBox/src
+StandardOutput=journal        
+StandardError=journal
+Restart=no
+User=pi
+
+[Install]
+WantedBy=multi-user.target
+```
+3. Save the file and reload systemd:
+```
+sudo systemctl daemon-reload
+```
+4. Start the service:
+```
+sudo systemctl start facebox.service
+```
+5. Check the status of the service:
+```
+sudo systemctl status facebox.service
+```
+
 ### Electrical  
 ![Electrical diagram for the facial recognition box](/faceboxdiagram.png)
 
