@@ -240,8 +240,10 @@ sudo systemctl status facebox.service
 ![Electrical diagram for the facial recognition box](/faceboxdiagram.png)
 
 ## Mistakes To Learn From
+### Trigger Mode Mistake
 <a name="trigger-mode-mistake"></a>
 While implementing the solenoid, I was not aware that the trigger mode of my relay was active-low. My GPIO pin output was set to HIGH to trigger the relay and then set back to LOW to turn off the relay. However, since my relay's trigger  mode was active-low, I was leaving my relay in an active state rather than returning it to inactive. This caused my solenoid to burn out due to the solenoids 0.2 second limit on how long it should recieve power.
 
+### Sleep Time Mistake
 <a name="sleep-time-mistake"></a>
 Prior to implementing solenoid controls, I did not fully read the documentation for the solenoid I was using. The documenation states that the solenoid should be powered for only 0.2 seconds max. In between my GPIO pin controls for setting the ouput from LOW back to HIGH I have a sleep function. Initally, I set the sleep function to sleep for 1 second leaving the GPIO pin output on LOW for 1 second which means that solenoid was powered longer than it's max causing the solenoid to burn out.
